@@ -1,10 +1,10 @@
-📦 Products Management System
+#📦 Products Management System
 A web-based application built with ASP.NET Core MVC that follows the Clean Architecture pattern. 
 The system is designed to manage products and their corresponding service providers, supporting full CRUD operations and advanced filtering capabilities.
 
 
 
-🛠 Features
+#🛠 Features
 ✅ Add, edit, delete, and list products
 
 ✅ Manage service providers (create, update, delete, list)
@@ -22,16 +22,16 @@ The system is designed to manage products and their corresponding service provid
 🧱 Project Structure
 This project is structured using Clean Architecture with the following layers:
 
-├── ProductsManagment.Core             
-# Entities and Interfaces
-├── ProductsManagment.ApplicationLeyar 
-# Interfaces and DTOs/ViewModels
-├── ProductsManagment.Infrastructure   
-# EF Core, Services Implementation
-├── ProductsManagment.Web              
-# ASP.NET Core MVC UI Layer (Controllers, Views)
+├── ProductsManagment.Core              Entities and Interfaces
 
-🔧 Technologies Used
+├── ProductsManagment.ApplicationLeyar  # Interfaces and DTOs/ViewModels
+
+├── ProductsManagment.Infrastructure    # EF Core, Services Implementation
+
+├── ProductsManagment.Web               # ASP.NET Core MVC UI Layer (Controllers, Views)
+
+
+#🔧 Technologies Used
 ASP.NET Core MVC (.NET 8)
 
 Entity Framework Core
@@ -46,7 +46,7 @@ Bootstrap (for frontend styling)
 
 LINQ (for filtering and querying)
 
-📂 Key Functionalities
+#📂 Key Functionalities
 Home Page: Central hub linking to both the Product and Service Provider sections.
 
 Products: List, Create, Edit, Delete, Filter.
