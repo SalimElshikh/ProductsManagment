@@ -1,0 +1,68 @@
+﻿@model ProductsManagment.Web.ViewModels.FilterProductViewModel
+
+@{
+    ViewData["Title"] = "فلترة المنتجات";
+}
+
+<h2 class="mb-4">فلترة المنتجات</h2>
+
+<form method="get" asp-action="Filter" class="row g-3 mb-4">
+    <div class="col-md-3">
+        <label class="form-label">السعر من</label>
+        <input asp-for="MinPrice" class="form-control" placeholder="0.00" />
+    </div>
+    <div class="col-md-3">
+        <label class="form-label">السعر إلى</label>
+        <input asp-for="MaxPrice" class="form-control" placeholder="0.00" />
+    </div>
+    <div class="col-md-3">
+        <label class="form-label">تاريخ الإنشاء من</label>
+        <input asp-for="DateFrom" class="form-control" type="date" />
+    </div>
+    <div class="col-md-3">
+        <label class="form-label">تاريخ الإنشاء إلى</label>
+        <input asp-for="DateTo" class="form-control" type="date" />
+    </div>
+    <div class="col-md-4">
+        <label class="form-label">مقدم الخدمة</label>
+        <select asp-for="SelectedServiceProviderId" asp-items="Model.Providers" class="form-select">
+            <option value="">-- اختر مقدم خدمة --</option>
+        </select>
+    </div>
+    <div class="col-md-2 d-flex align-items-end">
+        <button type="submit" class="btn btn-primary w-100">فلترة</button>
+    </div>
+</form>
+
+<hr />
+
+<h4>نتائج الفلترة:</h4>
+
+@if (Model.Products!.Any())
+{
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>المنتج</th>
+                <th>السعر</th>
+                <th>تاريخ الإنشاء</th>
+                <th>مقدم الخدمة</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Products)
+            {
+                <tr>
+                    <td>@item.Name</td>
+                    <td>@item.Price.ToString("C")</td>
+                    <td>@item.CreatedOn.ToShortDateString()</td>
+                    <td>@item.ServiceProviderName</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <div class="alert alert-warning">لا توجد منتجات مطابقة لخيارات الفلترة.</div>
+}

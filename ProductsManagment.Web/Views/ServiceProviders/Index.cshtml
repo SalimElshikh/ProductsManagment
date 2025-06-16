@@ -1,0 +1,29 @@
+﻿@model IEnumerable<ProductsManagment.Web.ViewModels.ServiceProviderListViewModel>
+
+@{
+    ViewData["Title"] = "قائمة مقدمي الخدمات";
+}
+
+<h2 class="mb-4">قائمة مقدمي الخدمات</h2>
+
+<a asp-action="Create" class="btn btn-success mb-3">إضافة مقدم خدمة جديد</a>
+
+<table class="table table-bordered table-striped">
+    <thead class="table-dark">
+        <tr>
+            <th>الاسم</th>
+            <th>العنوان</th>
+            <th>رقم الهاتف</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var provider in Model)
+        {
+            <tr>
+                <td>@provider.Name</td>
+                <td>@provider.Address</td>
+                <td>@provider.PhoneNumber</td>
+            </tr>
+        }
+    </tbody>
+</table>

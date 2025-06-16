@@ -1,0 +1,31 @@
+﻿@model IEnumerable<ProductsManagment.Web.ViewModels.ProductListViewModel>
+
+@{
+    ViewData["Title"] = "قائمة المنتجات";
+}
+
+<h2 class="mb-4">قائمة المنتجات</h2>
+
+<a asp-action="Create" class="btn btn-primary mb-3">إضافة منتج جديد</a>
+
+<table class="table table-bordered table-striped">
+    <thead class="table-dark">
+        <tr>
+            <th>الاسم</th>
+            <th>السعر</th>
+            <th>تاريخ الإضافة</th>
+            <th>مقدم الخدمة</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.Price.ToString("C")</td>
+                <td>@item.CreatedOn.ToString("yyyy/MM/dd")</td>
+                <td>@item.ServiceProviderName</td>
+            </tr>
+        }
+    </tbody>
+</table>

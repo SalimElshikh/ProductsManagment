@@ -1,8 +1,27 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "لوحة التحكم";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<h2 class="mb-4">لوحة التحكم</h2>
+
+<div class="list-group">
+    <a asp-controller="Products" asp-action="Index" class="list-group-item list-group-item-action">
+        📦 قائمة المنتجات
+    </a>
+
+    <a asp-controller="Products" asp-action="Create" class="list-group-item list-group-item-action">
+        ➕ إضافة منتج جديد
+    </a>
+
+    <a asp-controller="ServiceProviders" asp-action="Index" class="list-group-item list-group-item-action">
+        👨‍🔧 قائمة مقدمي الخدمة
+    </a>
+
+    <a asp-controller="ServiceProviders" asp-action="Create" class="list-group-item list-group-item-action">
+        ➕ إضافة مقدم خدمة جديد
+    </a>
+
+    <a asp-controller="Products" asp-action="Filter" class="list-group-item list-group-item-action">
+        🔍 فلترة المنتجات
+    </a>
 </div>
