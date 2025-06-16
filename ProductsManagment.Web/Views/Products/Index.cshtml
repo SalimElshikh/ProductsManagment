@@ -1,4 +1,5 @@
-﻿@model IEnumerable<ProductsManagment.Web.ViewModels.ProductListViewModel>
+﻿
+@model IEnumerable<ProductListViewModel>
 
 @{
     ViewData["Title"] = "قائمة المنتجات";
@@ -15,6 +16,7 @@
             <th>السعر</th>
             <th>تاريخ الإضافة</th>
             <th>مقدم الخدمة</th>
+            <th>الإجراءات</th>
         </tr>
     </thead>
     <tbody>
@@ -25,6 +27,13 @@
                 <td>@item.Price.ToString("C")</td>
                 <td>@item.CreatedOn.ToString("yyyy/MM/dd")</td>
                 <td>@item.ServiceProviderName</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-warning me-1">تعديل</a>
+
+                    <form asp-action="Delete" asp-route-id="@item.Id" method="post" style="display:inline" onsubmit="return confirm('هل أنت متأكد أنك تريد حذف هذا المنتج؟');">
+                        <button type="submit" class="btn btn-sm btn-danger">حذف</button>
+                    </form>
+                </td>
             </tr>
         }
     </tbody>

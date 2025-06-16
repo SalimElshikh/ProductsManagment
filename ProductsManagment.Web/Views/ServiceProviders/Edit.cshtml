@@ -1,13 +1,13 @@
-﻿@using ProductsManagment.Web.ViewModels.ServiceProviders
-@model CreateServiceProviderViewModel
-
+﻿@model EditServiceProviderViewModel
 @{
-    ViewData["Title"] = "إضافة مقدم خدمة جديد";
+    ViewData["Title"] = "تعديل مقدم الخدمة";
 }
 
-<h2>إضافة مقدم خدمة جديد</h2>
+<h2>تعديل مقدم الخدمة</h2>
 
-<form asp-action="Create" method="post" class="mt-4">
+<form asp-action="Edit" method="post">
+    <input type="hidden" asp-for="Id" />
+
     <div class="mb-3">
         <label asp-for="Name" class="form-label"></label>
         <input asp-for="Name" class="form-control" />
@@ -19,18 +19,11 @@
         <input asp-for="Address" class="form-control" />
         <span asp-validation-for="Address" class="text-danger"></span>
     </div>
-
     <div class="mb-3">
         <label asp-for="PhoneNumber" class="form-label"></label>
         <input asp-for="PhoneNumber" class="form-control" />
         <span asp-validation-for="PhoneNumber" class="text-danger"></span>
     </div>
-
-    <button type="submit" class="btn btn-primary">إضافة</button>
+    <button type="submit" class="btn btn-primary">حفظ التعديلات</button>
+    <a asp-action="Index" class="btn btn-secondary">إلغاء</a>
 </form>
-
-@section Scripts {
-    @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");
-    }
-}

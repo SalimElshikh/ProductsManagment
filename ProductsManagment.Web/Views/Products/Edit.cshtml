@@ -1,0 +1,45 @@
+﻿
+@model EditProductViewModel
+
+@{
+    ViewData["Title"] = "تعديل منتج";
+}
+
+<h2 class="mb-4">تعديل منتج</h2>
+
+<form asp-action="Edit" method="post">
+    <input type="hidden" asp-for="Id" />
+
+    <div class="mb-3">
+        <label asp-for="Name" class="form-label"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Price" class="form-label"></label>
+        <input asp-for="Price" class="form-control" />
+        <span asp-validation-for="Price" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="CreatedOn" class="form-label"></label>
+        <input asp-for="CreatedOn" class="form-control" type="date" />
+        <span asp-validation-for="CreatedOn" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="ServiceProviderId" class="form-label"></label>
+        <select asp-for="ServiceProviderId" asp-items="Model.Providers" class="form-select">
+            <option value="">-- اختر مقدم الخدمة --</option>
+        </select>
+        <span asp-validation-for="ServiceProviderId" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">حفظ التعديلات</button>
+    <a asp-action="Index" class="btn btn-secondary">إلغاء</a>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

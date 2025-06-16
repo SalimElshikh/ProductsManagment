@@ -1,5 +1,4 @@
-﻿using ServiceProvider = ProductsManagment.Core.Entities.ServiceProvider;
-
+﻿
 public static class MappingConfig
 {
     public static void RegisterMappings()

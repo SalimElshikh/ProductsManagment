@@ -1,6 +1,6 @@
 ﻿namespace ProductsManagment.Web.Validator;
 using FluentValidation;
-using ProductsManagment.Web.ViewModels;
+using ProductsManagment.Web.ViewModels.ServiceProviders;
 
 public class CreateServiceProviderViewModelValidator : AbstractValidator<CreateServiceProviderViewModel>
 {

@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
 using System.ComponentModel.DataAnnotations;
 
-namespace ProductsManagment.Web.ViewModels;
+namespace ProductsManagment.Web.ViewModels.Products;
 
 public class FilterProductViewModel
 {

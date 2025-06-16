@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ProductsManagment.Web.ViewModels.ServiceProviderListViewModel>
+﻿@model IEnumerable<ServiceProviderListViewModel>
 
 @{
     ViewData["Title"] = "قائمة مقدمي الخدمات";
@@ -14,6 +14,7 @@
             <th>الاسم</th>
             <th>العنوان</th>
             <th>رقم الهاتف</th>
+            <th>التحكم</th>
         </tr>
     </thead>
     <tbody>
@@ -23,6 +24,12 @@
                 <td>@provider.Name</td>
                 <td>@provider.Address</td>
                 <td>@provider.PhoneNumber</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@provider.Id" class="btn btn-sm btn-warning me-2">تعديل</a>
+                    <form asp-action="Delete" asp-route-id="@provider.Id" method="post" class="d-inline" onsubmit="return confirm('هل أنت متأكد من الحذف؟');">
+                        <button type="submit" class="btn btn-sm btn-danger">حذف</button>
+                    </form>
+                </td>
             </tr>
         }
     </tbody>

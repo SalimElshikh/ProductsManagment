@@ -54,26 +54,49 @@ public class ProductServices : IProductService
         }
     }
 
+    //public async Task<IEnumerable<Product>> FilterAsync(decimal? minPrice, decimal? maxPrice, DateOnly? fromDate, DateOnly? toDate, int? serviceProviderId)
+    //{
+    //    var query = _context.Products.Include(p => p.ServiceProvider).AsQueryable();
+
+    //    if (minPrice.HasValue)
+    //        query = query.Where(p => p.Price >= minPrice.Value);
+
+    //    if (maxPrice.HasValue)
+    //        query = query.Where(p => p.Price <= maxPrice.Value);
+
+    //    if (fromDate.HasValue)
+    //        query = query.Where(p => p.CreatedOn >= fromDate.Value);
+
+    //    if (toDate.HasValue)
+    //        query = query.Where(p => p.CreatedOn <= toDate.Value);
+
+    //    if (serviceProviderId.HasValue)
+    //        query = query.Where(p => p.Id == serviceProviderId.Value);
+
+    //    return await query.ToListAsync();
+    //}
+    // More Effictive 
     public async Task<IEnumerable<Product>> FilterAsync(decimal? minPrice, decimal? maxPrice, DateOnly? fromDate, DateOnly? toDate, int? serviceProviderId)
     {
-        var query = _context.Products.Include(p => p.ServiceProvider).AsQueryable();
+        IQueryable<Product> query = _context.Products.Include(p => p.ServiceProvider);
 
-        if (minPrice.HasValue)
+        if (minPrice is not null)
             query = query.Where(p => p.Price >= minPrice.Value);
 
-        if (maxPrice.HasValue)
+        if (maxPrice is not null)
             query = query.Where(p => p.Price <= maxPrice.Value);
 
-        if (fromDate.HasValue)
+        if (fromDate is not null)
             query = query.Where(p => p.CreatedOn >= fromDate.Value);
 
-        if (toDate.HasValue)
+        if (toDate is not null)
             query = query.Where(p => p.CreatedOn <= toDate.Value);
 
-        if (serviceProviderId.HasValue)
-            query = query.Where(p => p.Id == serviceProviderId.Value);
+        if (serviceProviderId is not null)
+            query = query.Where(p => p.ServiceProviderId == serviceProviderId.Value);
 
         return await query.ToListAsync();
     }
+
 }
 
