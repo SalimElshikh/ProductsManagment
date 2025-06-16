@@ -1,4 +1,4 @@
-﻿namespace ProductsManagment.Web.Validator;
+﻿namespace ProductsManagment.Web.Validator.ServiceProviders;
 using FluentValidation;
 using ProductsManagment.Web.ViewModels.ServiceProviders;
 
@@ -8,10 +8,13 @@ public class CreateServiceProviderViewModelValidator : AbstractValidator<CreateS
     {
         RuleFor(x => x.Name)
             .NotEmpty().WithMessage("اسم مقدم الخدمة مطلوب")
-            .MaximumLength(100).WithMessage("الاسم لا يزيد عن 100 حرف");
+            .Length(3, 100)
+            .WithMessage("العنوان يجب ان لا يقل عن 3 احرف ولا يزيد عن 100");
 
         RuleFor(x => x.Address)
-            .NotEmpty().WithMessage("العنوان مطلوب");
+            .NotEmpty().WithMessage("العنوان مطلوب")
+            .Length(3, 100)
+            .WithMessage("العنوان يجب ان لا يقل عن 3 احرف ولا يزيد عن 100");
 
         RuleFor(x => x.PhoneNumber)
             .NotEmpty().WithMessage("رقم الهاتف مطلوب")

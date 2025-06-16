@@ -14,4 +14,7 @@ global using Microsoft.AspNetCore.Mvc.Rendering;
 global using ProductsManagment.Web.ViewModels.ServiceProviders;
 global using ServiceProvider = ProductsManagment.Core.Entities.ServiceProvider;
 global using ProductsManagment.Web.ViewModels.Products;
+global using ProductsManagment.ApplicationLeyar.DTOs.Products;
+
+
 global using Mapster;

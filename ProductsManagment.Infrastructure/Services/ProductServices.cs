@@ -1,12 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Mapster;
+using Microsoft.EntityFrameworkCore;
+using ProductsManagment.ApplicationLeyar.DTOs.Products;
 using ProductsManagment.ApplicationLeyar.Interfaces;
 using ProductsManagment.Core.Entities;
 using ProductsManagment.Infrastructure.Data;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace ProductsManagment.Infrastructure.Services;
 public class ProductServices : IProductService
@@ -18,28 +16,38 @@ public class ProductServices : IProductService
         _context = context;
     }
 
-    public async Task<IEnumerable<Product>> GetAllAsync()
+    public async Task<IEnumerable<ProductListDto>> GetAllAsync()
     {
-        return await _context.Products
+        var products = await _context.Products
             .Include(p => p.ServiceProvider)
+            .Where(p => !p.IsDeleted)
             .ToListAsync();
+
+        return products.Adapt<IEnumerable<ProductListDto>>();
     }
 
-    public async Task<Product?> GetByIdAsync(int id)
+    public async Task<EditProductDto?> GetByIdAsync(int id)
     {
-        return await _context.Products
+        var product = await _context.Products
             .Include(p => p.ServiceProvider)
-            .FirstOrDefaultAsync(p => p.Id == id);
+            .FirstOrDefaultAsync(p => p.Id == id && !p.IsDeleted);
+
+        return product?.Adapt<EditProductDto>();
     }
 
-    public async Task AddAsync(Product product)
+    public async Task AddAsync(CreateProductDto dto)
     {
+        var product = dto.Adapt<Product>();
         _context.Products.Add(product);
         await _context.SaveChangesAsync();
     }
 
-    public async Task UpdateAsync(Product product)
+    public async Task UpdateAsync(EditProductDto dto)
     {
+        var product = await _context.Products.FindAsync(dto.Id);
+        if (product is null) return;
+
+        dto.Adapt(product); // يحدث الخصائص الموجودة فقط
         _context.Products.Update(product);
         await _context.SaveChangesAsync();
     }
@@ -47,38 +55,24 @@ public class ProductServices : IProductService
     public async Task DeleteAsync(int id)
     {
         var product = await _context.Products.FindAsync(id);
-        if (product != null)
+        if (product is not null)
         {
-            _context.Products.Remove(product);
+            product.IsDeleted = true;
             await _context.SaveChangesAsync();
         }
     }
 
-    //public async Task<IEnumerable<Product>> FilterAsync(decimal? minPrice, decimal? maxPrice, DateOnly? fromDate, DateOnly? toDate, int? serviceProviderId)
-    //{
-    //    var query = _context.Products.Include(p => p.ServiceProvider).AsQueryable();
-
-    //    if (minPrice.HasValue)
-    //        query = query.Where(p => p.Price >= minPrice.Value);
-
-    //    if (maxPrice.HasValue)
-    //        query = query.Where(p => p.Price <= maxPrice.Value);
-
-    //    if (fromDate.HasValue)
-    //        query = query.Where(p => p.CreatedOn >= fromDate.Value);
-
-    //    if (toDate.HasValue)
-    //        query = query.Where(p => p.CreatedOn <= toDate.Value);
-
-    //    if (serviceProviderId.HasValue)
-    //        query = query.Where(p => p.Id == serviceProviderId.Value);
-
-    //    return await query.ToListAsync();
-    //}
-    // More Effictive 
-    public async Task<IEnumerable<Product>> FilterAsync(decimal? minPrice, decimal? maxPrice, DateOnly? fromDate, DateOnly? toDate, int? serviceProviderId)
+    public async Task<IEnumerable<ProductListDto>> FilterAsync(
+        decimal? minPrice,
+        decimal? maxPrice,
+        DateOnly? fromDate,
+        DateOnly? toDate,
+        int? serviceProviderId)
     {
-        IQueryable<Product> query = _context.Products.Include(p => p.ServiceProvider);
+        var query = _context.Products
+            .Include(p => p.ServiceProvider)
+            .Where(p => !p.IsDeleted)
+            .AsQueryable();
 
         if (minPrice is not null)
             query = query.Where(p => p.Price >= minPrice.Value);
@@ -95,8 +89,7 @@ public class ProductServices : IProductService
         if (serviceProviderId is not null)
             query = query.Where(p => p.ServiceProviderId == serviceProviderId.Value);
 
-        return await query.ToListAsync();
+        var products = await query.ToListAsync();
+        return products.Adapt<IEnumerable<ProductListDto>>();
     }
-
 }
-

@@ -1,7 +1,5 @@
 ﻿
 
-using ProductsManagment.Web.ViewModels.Products;
-
 namespace ProductsManagment.Web.Controllers
 {
     public class ProductsController : Controller
@@ -54,8 +52,8 @@ namespace ProductsManagment.Web.Controllers
                 return View(model);
             }
 
-            var product = model.Adapt<Product>();
-            await _productService.AddAsync(product);
+            var dto = model.Adapt<CreateProductDto>();
+            await _productService.AddAsync(dto);
 
             return RedirectToAction(nameof(Index));
         }
@@ -63,13 +61,13 @@ namespace ProductsManagment.Web.Controllers
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
-            var product = await _productService.GetByIdAsync(id);
-            if (product == null)
+            var dto = await _productService.GetByIdAsync(id);
+            if (dto == null)
                 return NotFound();
 
-            var providers = await _serviceProviderService.GetAllAsync();
+            var viewModel = dto.Adapt<EditProductViewModel>();
 
-            var viewModel = product.Adapt<EditProductViewModel>();
+            var providers = await _serviceProviderService.GetAllAsync();
             viewModel.Providers = providers.Select(p => new SelectListItem
             {
                 Value = p.Id.ToString(),
@@ -94,8 +92,8 @@ namespace ProductsManagment.Web.Controllers
                 return View(model);
             }
 
-            var product = model.Adapt<Product>();
-            await _productService.UpdateAsync(product);
+            var dto = model.Adapt<EditProductDto>();
+            await _productService.UpdateAsync(dto);
 
             return RedirectToAction(nameof(Index));
         }
@@ -109,22 +107,15 @@ namespace ProductsManagment.Web.Controllers
 
         public async Task<IActionResult> Filter(FilterProductViewModel filter)
         {
-            var products = await _productService.GetAllAsync();
+            var products = await _productService.FilterAsync(
+                filter.MinPrice,
+                filter.MaxPrice,
+                filter.DateFrom,
+                filter.DateTo,
+                filter.SelectedServiceProviderId);
 
-            if (filter.MinPrice.HasValue)
-                products = products.Where(p => p.Price >= filter.MinPrice.Value).ToList();
-
-            if (filter.MaxPrice.HasValue)
-                products = products.Where(p => p.Price <= filter.MaxPrice.Value).ToList();
-
-            if (filter.DateFrom.HasValue)
-                products = products.Where(p => p.CreatedOn >= filter.DateFrom.Value).ToList();
-
-            if (filter.DateTo.HasValue)
-                products = products.Where(p => p.CreatedOn <= filter.DateTo.Value).ToList();
-
-            if (filter.SelectedServiceProviderId.HasValue)
-                products = products.Where(p => p.ServiceProviderId == filter.SelectedServiceProviderId.Value).ToList();
+            var viewModels = products.Adapt<List<ProductListViewModel>>();
+            filter.Products = viewModels;
 
             var providers = await _serviceProviderService.GetAllAsync();
             filter.Providers = providers.Select(p => new SelectListItem
@@ -132,8 +123,6 @@ namespace ProductsManagment.Web.Controllers
                 Value = p.Id.ToString(),
                 Text = p.Name
             });
-
-            filter.Products = products.Adapt<List<ProductListViewModel>>();
 
             return View(filter);
         }

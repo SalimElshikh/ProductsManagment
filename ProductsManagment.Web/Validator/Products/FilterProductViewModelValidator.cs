@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
 using ProductsManagment.Web.ViewModels.Products;
 
-namespace ProductsManagment.Web.Validator;
+namespace ProductsManagment.Web.Validator.Products;
 public class FilterProductViewModelValidator : AbstractValidator<FilterProductViewModel>
 {
     public FilterProductViewModelValidator()

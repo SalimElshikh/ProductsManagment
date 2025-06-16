@@ -1,11 +1,12 @@
-﻿using ProductsManagment.Core.Entities;
+﻿using ProductsManagment.ApplicationLeyar.DTOs.ServiceProvider;
+
 
 namespace ProductsManagment.ApplicationLeyar.Interfaces;
 public interface IServiceProviderService
 {
-    Task<IEnumerable<ServiceProvider>> GetAllAsync();
-    Task<ServiceProvider?> GetByIdAsync(int id);
-    Task AddAsync(ServiceProvider provider);
-    Task UpdateAsync(ServiceProvider provider);
-    Task DeleteAsync(int id);
+    Task<IEnumerable<ServiceProviderListDto>> GetAllAsync();
+    Task<EditServiceProviderDto?> GetByIdAsync(int id);
+    Task AddAsync(CreateServiceProviderDto dto);
+    Task UpdateAsync(EditServiceProviderDto dto);
+    Task<bool> DeleteAsync(int id);
 }

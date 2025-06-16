@@ -1,27 +1,40 @@
 ﻿@{
-    ViewData["Title"] = "لوحة التحكم";
+    ViewData["Title"] = "لوحة الخدمات ";
 }
 
-<h2 class="mb-4">لوحة التحكم</h2>
+<h2 class="mb-4 text-primary fw-bold">لوحة الخدمات </h2>
 
-<div class="list-group">
-    <a asp-controller="Products" asp-action="Index" class="list-group-item list-group-item-action">
-        📦 قائمة المنتجات
-    </a>
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    <div class="col">
+        <a asp-controller="Products" asp-action="Index" class="text-decoration-none">
+            <div class="card border-0 shadow-sm h-100 hover-scale">
+                <div class="card-body text-center">
+                    <div class="fs-1 mb-2">📦</div>
+                    <h5 class="card-title text-dark">قائمة المنتجات</h5>
+                </div>
+            </div>
+        </a>
+    </div>
 
-    <a asp-controller="Products" asp-action="Create" class="list-group-item list-group-item-action">
-        ➕ إضافة منتج جديد
-    </a>
+    <div class="col">
+        <a asp-controller="ServiceProviders" asp-action="Index" class="text-decoration-none">
+            <div class="card border-0 shadow-sm h-100 hover-scale">
+                <div class="card-body text-center">
+                    <div class="fs-1 mb-2">👨‍🔧</div>
+                    <h5 class="card-title text-dark">قائمة مقدمي الخدمة</h5>
+                </div>
+            </div>
+        </a>
+    </div>
 
-    <a asp-controller="ServiceProviders" asp-action="Index" class="list-group-item list-group-item-action">
-        👨‍🔧 قائمة مقدمي الخدمة
-    </a>
-
-    <a asp-controller="ServiceProviders" asp-action="Create" class="list-group-item list-group-item-action">
-        ➕ إضافة مقدم خدمة جديد
-    </a>
-
-    <a asp-controller="Products" asp-action="Filter" class="list-group-item list-group-item-action">
-        🔍 فلترة المنتجات
-    </a>
+    <div class="col">
+        <a asp-controller="Products" asp-action="Filter" class="text-decoration-none">
+            <div class="card border-0 shadow-sm h-100 hover-scale">
+                <div class="card-body text-center">
+                    <div class="fs-1 mb-2">🔍</div>
+                    <h5 class="card-title text-dark">فلترة المنتجات</h5>
+                </div>
+            </div>
+        </a>
+    </div>
 </div>

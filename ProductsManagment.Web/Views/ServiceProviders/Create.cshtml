@@ -3,6 +3,12 @@
 
 @{
     ViewData["Title"] = "إضافة مقدم خدمة جديد";
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger">
+            @TempData["ErrorMessage"]
+        </div>
+    }
 }
 
 <h2>إضافة مقدم خدمة جديد</h2>
