@@ -22,10 +22,14 @@ The system is designed to manage products and their corresponding service provid
 🧱 Project Structure
 This project is structured using Clean Architecture with the following layers:
 
-├── ProductsManagment.Core             # Entities and Interfaces
-├── ProductsManagment.ApplicationLeyar # Interfaces and DTOs/ViewModels
-├── ProductsManagment.Infrastructure   # EF Core, Services Implementation
-├── ProductsManagment.Web              # ASP.NET Core MVC UI Layer (Controllers, Views)
+├── ProductsManagment.Core             
+# Entities and Interfaces
+├── ProductsManagment.ApplicationLeyar 
+# Interfaces and DTOs/ViewModels
+├── ProductsManagment.Infrastructure   
+# EF Core, Services Implementation
+├── ProductsManagment.Web              
+# ASP.NET Core MVC UI Layer (Controllers, Views)
 
 🔧 Technologies Used
 ASP.NET Core MVC (.NET 8)
