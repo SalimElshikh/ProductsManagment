@@ -15,20 +15,20 @@ The system is designed to manage products and their corresponding service provid
 
 ✅ Clean separation of concerns via Clean Architecture principles
 
-✅ Use of Mapster for mapping between ViewModels and domain entities
+✅ Use of Mapster for mapping between ViewModels ,DTOs and  domain entities
 
 ✅ Dynamic Razor Views with strong typing
 
 🧱 Project Structure
 This project is structured using Clean Architecture with the following layers:
 
-├── ProductsManagment.Core                # Entities and Interfaces
+├── ProductsManagment.Core                # Entities 
 
-├── ProductsManagment.ApplicationLeyar    # Interfaces and DTOs/ViewModels
+├── ProductsManagment.ApplicationLeyar    # Interfaces and DTOs
 
-├── ProductsManagment.Infrastructure      # EF Core, Services Implementation
+├── ProductsManagment.Infrastructure      # DBContext, Services Implementation , Migration
 
-├── ProductsManagment.Web                 # ASP.NET Core MVC UI Layer (Controllers, Views)
+├── ProductsManagment.Web                 # ASP.NET Core MVC UI Layer (Controllers, Views,ViewModels,Mapping,Validator)
 
 
 🔧 Technologies Used
