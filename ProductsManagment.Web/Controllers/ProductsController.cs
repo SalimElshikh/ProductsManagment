@@ -27,6 +27,7 @@ namespace ProductsManagment.Web.Controllers
 
             var model = new CreateProductViewModel
             {
+                CreatedOn = DateOnly.FromDateTime(DateTime.Today),
                 Providers = providers.Select(p => new SelectListItem
                 {
                     Value = p.Id.ToString(),

@@ -1,4 +1,4 @@
-﻿@using ProductsManagment.Web.ViewModels.Products
+﻿
 @model FilterProductViewModel
 
 @{
@@ -27,7 +27,7 @@
     <div class="col-md-4">
         <label class="form-label">مقدم الخدمة</label>
         <select asp-for="SelectedServiceProviderId" asp-items="Model.Providers" class="form-select">
-            <option value="">-- اختر مقدم خدمة --</option>
+            <option value="">----</option>
         </select>
     </div>
     <div class="col-md-2 d-flex align-items-end">
@@ -37,7 +37,7 @@
 
 <hr />
 
-<h4>نتائج الفلترة:</h4>
+<h4>نتائج الفلترة</h4>
 
 @if (Model.Products!.Any())
 {

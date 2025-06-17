@@ -8,7 +8,7 @@ public class CreateProductViewModelValidator : AbstractValidator<CreateProductVi
     public CreateProductViewModelValidator()
     {
         RuleFor(x => x.Name)
-            .NotEmpty().WithMessage("اسم مقدم الخدمة مطلوب")
+            .NotEmpty().WithMessage("اسم الخدمة مطلوب")
             .Length(3, 100)
             .WithMessage("الاسم يجب ان لا يقل عن 3 احرف ولا يزيد عن 100");
 

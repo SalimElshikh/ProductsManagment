@@ -11,7 +11,6 @@ builder.Services
     .AddFluentValidationAutoValidation()
     .AddFluentValidationClientsideAdapters();
 
-
 builder.Services.AddValidatorsFromAssemblyContaining<EditProductViewModelValidator>();
 
 
@@ -29,6 +28,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(option =>
 MappingConfig.RegisterMappings(); 
 
 builder.Services.AddMapster();
+
 
 var app = builder.Build();
 

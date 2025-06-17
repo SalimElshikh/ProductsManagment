@@ -1,39 +1,55 @@
-﻿@using ProductsManagment.Web.ViewModels.ServiceProviders
+﻿
 @model CreateServiceProviderViewModel
 
 @{
     ViewData["Title"] = "إضافة مقدم خدمة جديد";
-    @if (TempData["ErrorMessage"] != null)
-    {
-        <div class="alert alert-danger">
-            @TempData["ErrorMessage"]
-        </div>
-    }
 }
 
-<h2>إضافة مقدم خدمة جديد</h2>
+<div class="container mt-5">
+    <div class="card shadow-lg rounded-4">
+        <div class="card-header bg-primary text-white text-center rounded-top-4 py-3">
+            <h3 class="mb-0 text-light">✨ إضافة مقدم خدمة جديد ✨</h3>
+            <p class="mb-0">من فضلك املأ البيانات بعناية</p>
+        </div>
 
-<form asp-action="Create" method="post" class="mt-4">
-    <div class="mb-3">
-        <label asp-for="Name" class="form-label"></label>
-        <input asp-for="Name" class="form-control" />
-        <span asp-validation-for="Name" class="text-danger"></span>
+        <div class="card-body p-4">
+
+            @if (TempData["ErrorMessage"] != null)
+            {
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong>خطأ:</strong> @TempData["ErrorMessage"]
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="إغلاق"></button>
+                </div>
+            }
+
+            <form asp-action="Create" method="post">
+                <div class="mb-3">
+                    <label asp-for="Name" class="form-label fw-semibold">الاسم الكامل</label>
+                    <input asp-for="Name" class="form-control rounded-3" placeholder="أدخل اسم مقدم الخدمة" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Address" class="form-label fw-semibold">العنوان</label>
+                    <input asp-for="Address" class="form-control rounded-3" placeholder="أدخل العنوان بالتفصيل" />
+                    <span asp-validation-for="Address" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="PhoneNumber" class="form-label fw-semibold">رقم الهاتف</label>
+                    <input asp-for="PhoneNumber" class="form-control rounded-3" placeholder="مثال: 01012345678" />
+                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                </div>
+
+                <div class="text-center mt-4">
+                    <button type="submit" class="btn btn-success px-5 py-2 fw-bold rounded-3">
+                        <i class="bi bi-person-plus-fill me-2"></i> إضافة
+                    </button>
+                </div>
+            </form>
+        </div>
     </div>
-
-    <div class="mb-3">
-        <label asp-for="Address" class="form-label"></label>
-        <input asp-for="Address" class="form-control" />
-        <span asp-validation-for="Address" class="text-danger"></span>
-    </div>
-
-    <div class="mb-3">
-        <label asp-for="PhoneNumber" class="form-label"></label>
-        <input asp-for="PhoneNumber" class="form-control" />
-        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
-    </div>
-
-    <button type="submit" class="btn btn-primary">إضافة</button>
-</form>
+</div>
 
 @section Scripts {
     @{

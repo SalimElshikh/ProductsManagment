@@ -7,7 +7,7 @@ public  class Product
     public string Name   { get; set; } = null!;
     public decimal Price { get; set; }
     public bool IsDeleted { get; set; } 
-    public DateOnly CreatedOn { get; set; } = DateOnly.FromDateTime(DateTime.Today);
+    public DateOnly? CreatedOn { get; set; }
 
 
 

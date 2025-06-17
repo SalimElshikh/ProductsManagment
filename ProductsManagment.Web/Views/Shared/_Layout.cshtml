@@ -13,63 +13,10 @@
 
     <!-- ملف CSS المخصص -->
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/ProductsManagment.Web.styles.css" asp-append-version="true" />
+    
 
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #afd7ff;
-            color: #1f2937;
-            text-align: center;
-        }
+    <link rel="icon" type="image/x-icon" href="~/favicon.ico" />
 
-        .navbar {
-            background-color: #ffffff;
-            border-bottom: 1px solid #e5e7eb;
-        }
-
-        .navbar-brand {
-            font-weight: 600;
-            color: #1d4ed8 !important;
-        }
-
-        .navbar-nav .nav-link {
-            color: #1f2937 !important;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-
-            .navbar-nav .nav-link:hover {
-                color: #1d4ed8 !important;
-                text-decoration: underline;
-            }
-
-        footer a:hover {
-            text-decoration: underline;
-        }
-
-        main {
-            padding-top: 1rem;
-        }
-
-        .container {
-            max-width: 1140px;
-        }
-
-        .card {
-            background-color: #ffffff;
-            border-radius: 1rem;
-        }
-
-        .card-body {
-            background-color: #ffffff;
-        }
-
-        .hover-scale:hover {
-            transform: scale(1.03);
-            transition: transform 0.2s ease-in-out;
-        }
-    </style>
 </head>
 <body>
     <header class="bg-white shadow-sm">
@@ -81,10 +28,13 @@
             <div class="collapse navbar-collapse" id="mainNavbar">
                 <ul class="navbar-nav ms-auto gap-2">
                     <li class="nav-item">
-                        <a class="nav-link" asp-controller="Products" asp-action="Index">📦 Products</a>
+                        <a class="nav-link" asp-controller="Products" asp-action="Index">📦 المنتجات </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" asp-controller="ServiceProviders" asp-action="Index">🧑‍🔧 Service Providers</a>
+                        <a class="nav-link" asp-controller="ServiceProviders" asp-action="Index">🧑‍🔧 مقدمي المنتجات </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Products" asp-action="Filter">🔍 فلترة المنتجات  </a>
                     </li>
                 </ul>
             </div>
@@ -93,14 +43,15 @@
 
     <div class="container">
         <main role="main">
-            <div class="card shadow-sm rounded-4 border-0 mt-4">
+            
                 <div class="card-body p-4">
                     @RenderBody()
                 </div>
-            </div>
+            
         </main>
     </div>
-    <footer class="bg-light text-center text-muted py-4 mt-5 border-top">
+
+    <footer class="text-center text-muted border-top mt-auto">
         <div class="container">
             <small>&copy; 2025 - <strong>Products Management</strong></small>
         </div>

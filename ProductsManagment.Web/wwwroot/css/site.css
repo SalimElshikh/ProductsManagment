@@ -1,7 +1,5 @@
 /* Reset */
-*,
-*::before,
-*::after {
+*, *::before, *::after {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -17,19 +15,66 @@
     --font-family: 'Inter', sans-serif;
 }
 
-html {
-    font-size: 16px;
+/* Base HTML structure */
+html, body {
+    height: 100%;
 }
 
 body {
-    font-family: var(--font-family);
-    background-color: var(--bg-color);
-    color: var(--text-color);
+    display: flex;
+    flex-direction: column;
     min-height: 100vh;
-    padding-bottom: 60px;
+    font-family: var(--font-family);
+    background-color: #afd7ff;
+    color: var(--text-color);
+    text-align: center;
 }
 
-/* Container padding */
+/* Main content fills remaining space */
+main {
+    flex: 1;
+    padding-top: 1rem;
+    padding-bottom: 2rem; /* Space above footer */
+}
+
+/* Footer styling */
+footer {
+    background-color: #f8f9fa;
+    padding: 1.5rem 0;
+    margin-top: auto; /* Pushes footer to bottom */
+    border-top: 1px solid #dee2e6;
+    color: #6b7280;
+    text-align: center;
+}
+
+    /* Footer link hover */
+    footer a:hover {
+        text-decoration: underline;
+    }
+
+/* Navbar */
+.navbar {
+    background-color: #ffffff;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.navbar-brand {
+    font-weight: 600;
+    color: var(--primary-color) !important;
+}
+
+.navbar-nav .nav-link {
+    color: var(--text-color) !important;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+    .navbar-nav .nav-link:hover {
+        color: var(--primary-color) !important;
+        text-decoration: underline;
+    }
+
+/* Container */
 .container {
     max-width: 1140px;
     margin: 0 auto;
@@ -115,22 +160,20 @@ textarea {
         box-shadow: 0 0 0 2px rgba(37, 140, 251, 0.3);
     }
 
-/* Cards (optional) */
+/* Cards */
 .card {
     background-color: white;
-    border-radius: var(--border-radius);
+    border-radius: 1rem;
     padding: 1.5rem;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
     margin-bottom: 2rem;
 }
 
-/* Footer */
-footer {
-    padding: 1rem;
-    text-align: center;
-    color: #6b7280;
-    background-color: #f3f4f6;
-    position: absolute;
-    bottom: 0;
-    width: 100%;
+.card-body {
+    background-color: #ffffff;
+}
+
+.hover-scale:hover {
+    transform: scale(1.03);
+    transition: transform 0.2s ease-in-out;
 }
